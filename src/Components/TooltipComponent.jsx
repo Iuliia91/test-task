@@ -1,12 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { mockUpsFont } from '../helpers/mockUps'
+const StyledTooltipCpmponent = styled.div`
+  .Tooltip-Wrapper {
+    display: inline-block;
+    position: relative;
+  }
+  .Tooltip-Tip {
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 6px;
+    P {
+      background: black;
+      color: white;
+      padding: 5px 20px;
+      white-space: nowrap;
+      ${mockUpsFont.bodyFont}
+    }
+  }
+`
 
-const StyledTooltipCpmponent = styled.div``
+const TooltipComponent = (props) => {
+  let timeout
+  const [active, setActive] = useState(false)
 
-const TooltipComponent = () => {
+  const showTip = () => {
+    timeout = setTimeout(() => {
+      setActive(true)
+    }, props.delay || 400)
+  }
+
+  const hideTip = () => {
+    clearInterval(timeout)
+    setActive(false)
+  }
+
   return (
     <StyledTooltipCpmponent>
-      <main className="block_user_create"></main>
+      <div
+        className="Tooltip-Wrapper"
+        onMouseEnter={showTip}
+        onMouseLeave={hideTip}
+      >
+        {props.children}
+        {active && props.content && (
+          <div className={`Tooltip-Tip ${props.direction || 'top'}`}>
+            <p>{props.content}</p>
+          </div>
+        )}
+      </div>
     </StyledTooltipCpmponent>
   )
 }

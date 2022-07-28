@@ -4,17 +4,20 @@ import axios from 'axios'
 import { mockUpsFont, mocUpsButton, mocUpMedia } from '../../helpers/mockUps'
 import PreloaderComponent from '../../Components/PreloaderComponent'
 const StyledUserList = styled.div`
-  max-width: 1170px;
+  //max-width: 1170px;
   padding: 140px 0;
 
   margin: auto;
   .block_list {
     position: relative;
+    display: flex;
+    justify-content: center;
   }
+
   .list {
     display: grid;
     gap: 29px 29px;
-    grid-template-columns: repeat(3, 370px);
+    grid-template-columns: repeat(3, 20em);
     margin-bottom: 50px;
   }
   div {
@@ -44,6 +47,7 @@ const StyledUserList = styled.div`
 `
 
 const StyledCard = styled.div`
+  // width: 90%;
   .block_card {
     background: var(--c-white);
     border-radius: 20px;
@@ -52,7 +56,7 @@ const StyledCard = styled.div`
   }
 
   .card {
-    width: 242px;
+    width: 90%;
     height: 234px;
     display: flex;
     flex-direction: column;

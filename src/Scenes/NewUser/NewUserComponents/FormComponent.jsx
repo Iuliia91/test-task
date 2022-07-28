@@ -1,64 +1,105 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Formik, Form } from 'formik'
-import InputComponent from '../../../Components/InputComponent'
-import { initialData, validateEmail } from '../../../helpers/formdata'
+import InputComponent, {
+  FileUploadInput,
+  MaskInput,
+} from '../../../Components/InputComponent'
+import { initialData, validationFunction } from '../../../helpers/formdata'
+import OptionSelect from './OptionSelect'
+import { mocUpsButton, mockUpsFont } from '../../../helpers/mockUps'
+import { formDataValue, postData, getToken } from '../../../helpers/formdata'
+
 const StyledFormComponent = styled.div`
   width: 100%;
   margin: auto;
 
   form {
     text-align: center;
+    .block {
+      margin-bottom: 50px;
+    }
+    p {
+      margin: 0;
+    }
+    .active {
+      ${mocUpsButton.button}
+    }
+    .disable {
+      ${mocUpsButton.disableButton}
+    }
+  }
+  .dsiable {
+    color: red;
+  }
+  .block_phone > input {
+    padding: 0;
+  }
+  .block_phone > div {
+    width: 385px;
+    margin: auto;
+    p {
+      float: left;
+      ${mockUpsFont.bodyFont}
+    }
   }
 `
 
 const FormComponent = () => {
+  const [message, setMessage] = useState('')
+  const [open, setOpen] = useState(false)
+  const [valueAdd, setValueAdd] = useState(false)
+  useEffect(() => {
+    let timer1 = setTimeout(() => setOpen(false), 5000)
+    return () => {
+      clearTimeout(timer1)
+    }
+  }, [open])
+
   return (
     <StyledFormComponent>
+      {open && <div>{message}</div>}
       <Formik
         initialValues={initialData}
         validate={(formValues) => {
-          console.log(formValues)
-          const errorObj = {}
-          let isValid = true
-          if (!formValues.userName) {
-            isValid = false
-            errorObj.userName = 'fill the fields'
-          } else if (!validateEmail(formValues.email)) {
-            isValid = false
-            errorObj.password = 'write correct email'
-          } else if (!formValues.email) {
-            isValid = false
-            errorObj.password = 'fill the fields'
-          }
-          return errorObj
+          return validationFunction(formValues)
         }}
         onSubmit={(formValues) => {
-          console.log(formValues)
+          let formData = formDataValue(formValues)
+
+          postData(formData).then((response) => {
+            setOpen(true)
+            setMessage(response)
+          })
         }}
       >
-        <Form>
-          <div>
-            <InputComponent
-              name="userName"
-              type="text"
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <InputComponent name="userEmail" type="email" placeholder="Email" />
-          </div>
-          <div>
-            <InputComponent
-              name="userPhone"
-              type="number"
-              placeholder="Phone"
-            />
-          </div>
-          <div>
-            <button type="submit">Sing up</button>
-          </div>
-        </Form>
+        {({ setFieldValue, isValid, dirty }) => (
+          <Form encType="multipart/form-data" action="">
+            <div className="block">
+              <InputComponent name="name" type="text" placeholder="Your name" />
+            </div>
+            <div className="block">
+              <InputComponent name="email" type="email" placeholder="Email" />
+            </div>
+            <div className=" block block_phone">
+              <MaskInput name="phone" />
+              <div>
+                <p>+38(XXX)XXX-XX-XX</p>
+              </div>
+            </div>
+            <OptionSelect />
+            <FileUploadInput setFieldValue={setFieldValue} />
+            <div>
+              <button
+                type="submit"
+                disabled={!(isValid && dirty)}
+                className={!(isValid && dirty) ? 'disable' : 'active'}
+              >
+                Sing up
+              </button>
+            </div>
+          </Form>
+        )}
       </Formik>
     </StyledFormComponent>
   )
