@@ -17,7 +17,7 @@ const StyledUserList = styled.div`
   .list {
     display: grid;
     gap: 29px 29px;
-    grid-template-columns: repeat(3, 20em);
+    grid-template-columns: repeat(3, 23em);
     margin-bottom: 50px;
   }
   div {

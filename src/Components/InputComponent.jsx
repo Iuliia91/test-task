@@ -17,12 +17,41 @@ const StyledInputComponent = styled.div`
       ${mockUpsFont.bodyFont}
     }
   }
-
-  input[type='file'] {
-    display: none;
+  .file_block {
+    position: relative;
+    width: 390px;
+    margin: auto;
   }
-
-  input:-internal-autofill-selected {
+  input[type='file'] {
+    opacity: 0;
+    margin-bottom: 50px;
+  }
+  .file_upload {
+    display: flex;
+    position: absolute;
+    width: 366px;
+    height: 54px;
+    position: absolute;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid var(--c-input);
+    span {
+      ${mockUpsFont.bodyFont}
+    }
+  }
+  .block_upload {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+  }
+  .block_name {
+    margin-left: 10px;
+  }
+  #file-upload-button {
+    visibility: hidden;
   }
   .errorMessagerHolder {
     color: #d93025;
@@ -57,22 +86,28 @@ const StyledInputComponent = styled.div`
 `
 
 export const FileUploadInput = (props) => {
-  const [name, setName] = useState('')
+  const [fileName, setFileName] = useState('Upload your photo')
   return (
     <StyledInputComponent>
-      <label for="file">Upload</label>
-      <input
-        id="file"
-        name="photo"
-        type="file"
-        //placeholder="Uploader"
-        onChange={(event) => {
-          const v = event.target.files[0]
+      <div className="file_block">
+        <lable for="file" className="file_upload">
+          <span className="block_upload">Upload</span>
+          <span className="block_name">{fileName}</span>
+        </lable>
+        <input
+          id="file"
+          name="photo"
+          nameDefaolt="choo"
+          type="file"
+          onChange={(event) => {
+            const v = event.target.files[0]
+            setFileName(v.name)
 
-          props.setFieldValue('photo', v)
-        }}
-      />
-      <ErrorMessage name="photo" />
+            props.setFieldValue('photo', v)
+          }}
+        />
+        <ErrorMessage name="photo" />
+      </div>
     </StyledInputComponent>
   )
 }
@@ -82,7 +117,7 @@ export const RadioInput = (props) => {
 
   return (
     <StyledInputComponent>
-      <label class="form-control">
+      <label>
         <Field
           type="radio"
           name={props.name}
