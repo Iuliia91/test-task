@@ -95,10 +95,18 @@ export const postData = async (formData) => {
     data: formData,
   })
     .then((response) => {
-      return response.data.message
+      let obj = {
+        success: response.data.success,
+        message: response.data.message,
+      }
+      return obj
     })
 
     .catch((error) => {
-      return error.response.data.message
+      let obj = {
+        success: error.response.data.success,
+        message: error.response.data.message,
+      }
+      return obj
     })
 }

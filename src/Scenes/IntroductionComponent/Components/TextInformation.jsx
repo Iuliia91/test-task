@@ -5,6 +5,7 @@ import {
   mockUpsFont,
   mocUpsButton,
 } from '../../../helpers/mockUps'
+import { Link } from 'react-scroll'
 const StyledTextInformation = styled.div`
   ${mocUpsBlock.flexColumn}
   width:380px;
@@ -41,7 +42,11 @@ const TeaxtInfromation = () => {
         </p>
       </div>
       <div>
-        <button>Sing Up</button>
+        <button>
+          <Link to="user_create" sty={true} smooth={true} offset={50}>
+            Sing Up
+          </Link>
+        </button>
       </div>
     </StyledTextInformation>
   )

@@ -17,6 +17,7 @@ const StyledFormComponent = styled.div`
 
   form {
     text-align: center;
+    margin-bottom: 50px;
     .block {
       margin-bottom: 50px;
     }
@@ -49,7 +50,7 @@ const StyledFormComponent = styled.div`
 const FormComponent = () => {
   const [message, setMessage] = useState('')
   const [open, setOpen] = useState(false)
-  const [valueAdd, setValueAdd] = useState(false)
+
   useEffect(() => {
     let timer1 = setTimeout(() => setOpen(false), 5000)
     return () => {
@@ -59,18 +60,21 @@ const FormComponent = () => {
 
   return (
     <StyledFormComponent>
-      {open && <div>{message}</div>}
+      {open && <div>{message.message}</div>}
       <Formik
         initialValues={initialData}
         validate={(formValues) => {
           return validationFunction(formValues)
         }}
-        onSubmit={(formValues) => {
+        onSubmit={(formValues, { resetForm }) => {
           let formData = formDataValue(formValues)
 
           postData(formData).then((response) => {
             setOpen(true)
             setMessage(response)
+            if (response.success) {
+              resetForm()
+            }
           })
         }}
       >

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import logo from '../../../assest/imgases/Logo.png'
 import { mocUpsButton, mocUpsBlock, mocUpMedia } from '../../../helpers/mockUps'
+import { Link } from 'react-scroll'
 const StyledHeader = styled.div`
   width: 100vw;
   height: 60px;
@@ -35,8 +36,18 @@ const Header = () => {
         </div>
 
         <div>
-          <button>Users</button>
-          <button>Sing up</button>
+          <button>
+            {' '}
+            <Link to="user_list" sty={true} smooth={true} offset={50}>
+              {' '}
+              Users
+            </Link>
+          </button>
+          <button>
+            <Link to="user_create" sty={true} smooth={true} offset={50}>
+              Sing up
+            </Link>
+          </button>
         </div>
       </div>
     </StyledHeader>
