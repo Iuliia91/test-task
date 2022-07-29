@@ -67,22 +67,6 @@ const StyledInputComponent = styled.div`
     width: 20px;
     height: 20px;
   }
-  input[type='radio']:checked {
-    width: 50px;
-    height: 50px;
-    background: red;
-  }
-
-  input[type='radio']:hover {
-    cursor: pointer;
-    background: red;
-  }
-  input[type='radio']:after {
-    content: '';
-    width: 100%;
-    background: red;
-    color: red;
-  }
 `
 
 export const FileUploadInput = (props) => {
@@ -90,14 +74,13 @@ export const FileUploadInput = (props) => {
   return (
     <StyledInputComponent>
       <div className="file_block">
-        <lable for="file" className="file_upload">
+        <lable tmlFor="file" className="file_upload">
           <span className="block_upload">Upload</span>
           <span className="block_name">{fileName}</span>
         </lable>
         <input
           id="file"
           name="photo"
-          nameDefaolt="choo"
           type="file"
           onChange={(event) => {
             const v = event.target.files[0]
@@ -114,11 +97,12 @@ export const FileUploadInput = (props) => {
 
 export const RadioInput = (props) => {
   const [field, meta, helpers] = useField(props.name)
+  const [data, setData] = useState(props.data)
 
   return (
     <StyledInputComponent>
       <label>
-        <Field
+        <input
           type="radio"
           name={props.name}
           value={props.id}

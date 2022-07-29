@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik'
 import InputComponent, {
   FileUploadInput,
   MaskInput,
+  RadioInput,
 } from '../../../Components/InputComponent'
 import { initialData, validationFunction } from '../../../helpers/formdata'
 import OptionSelect from './OptionSelect'
