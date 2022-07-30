@@ -38,13 +38,13 @@ const Header = () => {
         <div>
           <button>
             {' '}
-            <Link to="user_list" sty={true} smooth={true} offset={50}>
+            <Link to="user_list" smooth={true} offset={50}>
               {' '}
               Users
             </Link>
           </button>
           <button>
-            <Link to="user_create" sty={true} smooth={true} offset={50}>
+            <Link to="user_create" smooth={true} offset={50}>
               Sing up
             </Link>
           </button>

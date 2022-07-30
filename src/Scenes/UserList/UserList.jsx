@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Card from './UserListComponents/Card'
 import { mockUpsFont, mocUpsButton, mocUpMedia } from '../../helpers/mockUps'
@@ -52,8 +52,8 @@ const UserList = (props) => {
       <div className="block_list">
         <div className="list">
           {props.userList ? (
-            props.userList.users.map((item) => {
-              return <Card item={item} />
+            props.userList.users.map((item, index) => {
+              return <Card item={item} key={index} />
             })
           ) : (
             <PreloaderComponent />

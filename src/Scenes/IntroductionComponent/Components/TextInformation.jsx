@@ -43,7 +43,7 @@ const TeaxtInfromation = () => {
       </div>
       <div>
         <button>
-          <Link to="user_create" sty={true} smooth={true} offset={50}>
+          <Link to="user_create" smooth={true} offset={50}>
             Sing Up
           </Link>
         </button>

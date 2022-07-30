@@ -17,7 +17,11 @@ const MainLayouts = () => {
     'https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=6'
   )
   const [buttonDisable, setButtonDisable] = useState(false)
+  const [reStartNewList, setReStartNewList] = useState(false)
 
+  const handleRestaratNewList = (item) => {
+    setReStartNewList(item)
+  }
   const handleShowMoreUsers = () => {
     if (userList.links.next_url === null) {
       setButtonDisable(true)
@@ -30,7 +34,7 @@ const MainLayouts = () => {
     getData(newLink).then((response) => {
       setUserList(response)
     })
-  }, [newLink])
+  }, [newLink, reStartNewList])
   return (
     <StyledMainLayouts>
       <IntroductionComponent />
@@ -39,7 +43,7 @@ const MainLayouts = () => {
         handleShowMoreUsers={() => handleShowMoreUsers()}
         buttonDisable={buttonDisable}
       />
-      <NewUserCreate />
+      <NewUserCreate handleRestaratNewList={() => handleRestaratNewList()} />
     </StyledMainLayouts>
   )
 }

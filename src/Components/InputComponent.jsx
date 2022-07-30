@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useField, Field, ErrorMessage, FieldArray } from 'formik'
+import { useField, ErrorMessage } from 'formik'
 import { mockUpsFont } from '../helpers/mockUps'
 import InputMask from 'react-input-mask'
 import TooltipComponent from './TooltipComponent'
-import cursor from '../assest/imgases/cursor.png'
+
 const StyledInputComponent = styled.div`
   input {
-    width: 366px;
+    width: 30em;
     height: 54px;
     border: 1px solid var(--c-input);
     border-color: ${(props) => (props.error ? 'red' : 'var(--c-input)')};
@@ -19,7 +19,7 @@ const StyledInputComponent = styled.div`
   }
   .file_block {
     position: relative;
-    width: 390px;
+    width: 26em;
     margin: auto;
   }
   input[type='file'] {
@@ -29,7 +29,7 @@ const StyledInputComponent = styled.div`
   .file_upload {
     display: flex;
     position: absolute;
-    width: 366px;
+    width: 100%;
     height: 54px;
     position: absolute;
     justify-content: start;
@@ -69,15 +69,30 @@ const StyledInputComponent = styled.div`
   }
 `
 
+const StyledPhoneInput = styled.div`
+  margin: auto;
+  input {
+    width: 30em;
+    height: 54px;
+    border: 1px solid var(--c-input);
+    border-color: ${(props) => (props.error ? 'red' : 'var(--c-input)')};
+    padding-left: 14px;
+
+    P {
+      ${mockUpsFont.bodyFont}
+    }
+  }
+`
+
 export const FileUploadInput = (props) => {
   const [fileName, setFileName] = useState('Upload your photo')
   return (
     <StyledInputComponent>
       <div className="file_block">
-        <lable tmlFor="file" className="file_upload">
+        <label className="file_upload">
           <span className="block_upload">Upload</span>
           <span className="block_name">{fileName}</span>
-        </lable>
+        </label>
         <input
           id="file"
           name="photo"
@@ -96,8 +111,7 @@ export const FileUploadInput = (props) => {
 }
 
 export const RadioInput = (props) => {
-  const [field, meta, helpers] = useField(props.name)
-  const [data, setData] = useState(props.data)
+  const [field] = useField(props.name)
 
   return (
     <StyledInputComponent>
@@ -117,10 +131,10 @@ export const RadioInput = (props) => {
 }
 
 export const MaskInput = (props) => {
-  const [field, meta, helpers] = useField(props.name)
+  const [field, meta] = useField(props.name)
 
   return (
-    <StyledInputComponent>
+    <StyledPhoneInput>
       <TooltipComponent content={field.value} direction="bottom">
         <InputMask
           mask="+38(099) 999 - 99 - 99"
@@ -134,12 +148,12 @@ export const MaskInput = (props) => {
           <div className="errorMessagerHolder">{meta.error}</div>
         )}
       </TooltipComponent>
-    </StyledInputComponent>
+    </StyledPhoneInput>
   )
 }
 
 const InputComponent = (props) => {
-  const [field, meta, helpers] = useField(props.name)
+  const [field, meta] = useField(props.name)
   return (
     <StyledInputComponent error={meta.error && meta.touched}>
       <TooltipComponent content={field.value} direction="bottom">

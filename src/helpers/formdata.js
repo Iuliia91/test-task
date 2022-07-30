@@ -19,39 +19,28 @@ export function validateEmail(email) {
 
 export const validationFunction = (formValues) => {
   const errorObj = {}
-  let isValid = true
+
   if (!formValues.name) {
-    isValid = false
     errorObj.name = 'fill the fields'
   } else if (formValues.name.length < 2) {
-    isValid = false
     errorObj.name = 'The name must be at least 2 charcters'
   } else if (formValues.name.length > 60) {
-    isValid = false
     errorObj.name = 'The name must be less then 60 charcters'
   } else if (!formValues.email) {
-    isValid = false
     errorObj.email = 'fill the fields'
   } else if (!validateEmail(formValues.email)) {
-    isValid = false
     errorObj.email = 'write correct email'
   } else if (!formValues.phone) {
-    isValid = false
     errorObj.phone = 'fill the fields'
   } else if (formValues.phone.includes('_')) {
-    isValid = false
     errorObj.phone = 'write correct number'
   } else if (!formValues.position_id) {
-    isValid = false
     errorObj.position_id = 'choose position'
   } else if (!formValues.photo) {
-    isValid = false
     errorObj.photo = 'fill the fields'
   } else if (!formValues.photo.type.includes('image/jpeg')) {
     errorObj.photo = 'select valid image .jpg/.jpeg'
   } else if (formValues.photo.size <= 1024 * 5) {
-    console.log(typeof formValues.photo.size)
-    console.log('not allow size')
     errorObj.photo = 'size'
   }
   return errorObj

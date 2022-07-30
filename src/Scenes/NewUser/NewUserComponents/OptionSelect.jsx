@@ -69,7 +69,7 @@ const OptionSelect = (props) => {
         <div className="selection_block">
           {positionData.map((position) => {
             return (
-              <div className="selection_item">
+              <div className="selection_item" key={position.id}>
                 <RadioInput
                   value={position.id}
                   id={position.id}

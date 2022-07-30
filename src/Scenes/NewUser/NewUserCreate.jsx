@@ -11,12 +11,11 @@ const StyledNewUserCreate = styled.div`
   }
 `
 
-const NewUserCreate = () => {
+const NewUserCreate = (props) => {
   return (
     <StyledNewUserCreate id="user_create">
-      <header>Working with POST request</header>
       <main className="block_user_create">
-        <FormComponent />
+        <FormComponent handleRestaratNewList={props.handleRestaratNewList} />
       </main>
     </StyledNewUserCreate>
   )
