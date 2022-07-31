@@ -4,7 +4,7 @@ import { useField, ErrorMessage } from 'formik'
 import { mockUpsFont } from '../helpers/mockUps'
 import InputMask from 'react-input-mask'
 import TooltipComponent from './TooltipComponent'
-
+import { mocUpMedia } from '../helpers/mockUps'
 const StyledInputComponent = styled.div`
   input {
     width: 30em;
@@ -67,21 +67,8 @@ const StyledInputComponent = styled.div`
     width: 20px;
     height: 20px;
   }
-`
 
-const StyledPhoneInput = styled.div`
-  margin: auto;
-  input {
-    width: 30em;
-    height: 54px;
-    border: 1px solid var(--c-input);
-    border-color: ${(props) => (props.error ? 'red' : 'var(--c-input)')};
-    padding-left: 14px;
-
-    P {
-      ${mockUpsFont.bodyFont}
-    }
-  }
+  ${mocUpMedia.media360}
 `
 
 export const FileUploadInput = (props) => {
@@ -134,7 +121,7 @@ export const MaskInput = (props) => {
   const [field, meta] = useField(props.name)
 
   return (
-    <StyledPhoneInput>
+    <StyledInputComponent>
       <TooltipComponent content={field.value} direction="bottom">
         <InputMask
           mask="+38(099) 999 - 99 - 99"
@@ -148,7 +135,7 @@ export const MaskInput = (props) => {
           <div className="errorMessagerHolder">{meta.error}</div>
         )}
       </TooltipComponent>
-    </StyledPhoneInput>
+    </StyledInputComponent>
   )
 }
 

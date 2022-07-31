@@ -62,7 +62,7 @@ export const mocUpsButton = {
 
 export const mocUpMedia = {
   media1024: () => css`
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1030px) {
       max-width: 1024px;
       .block_list {
         display: flex;
@@ -100,6 +100,49 @@ export const mocUpMedia = {
       .card {
         width: 100%;
         height: 234px;
+      }
+    }
+  `,
+  media360: () => css`
+    @media only screen and (max-width: 360px) {
+      max-width: 360px;
+      header {
+        width: 90%;
+      }
+      .titel {
+        width: 98%;
+      }
+
+      .list {
+        display: grid;
+        gap: 20px 16px;
+        grid-template-columns: repeat(1, 90%);
+        justify-content: center;
+      }
+      .header {
+        div {
+          margin-right: 10px;
+        }
+      }
+      input {
+        width: 80%;
+      }
+      .file_block {
+        width: 90%;
+      }
+      .file_upload {
+        width: 95%;
+      }
+      .block_phone > div {
+        width: 100%;
+      }
+
+      .cvdbuo {
+        width: 85%;
+      }
+
+      .selection_block {
+        width: 90%;
       }
     }
   `,

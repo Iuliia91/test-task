@@ -7,7 +7,7 @@ import InputComponent, {
 } from '../../../Components/InputComponent'
 import { initialData, validationFunction } from '../../../helpers/formdata'
 import OptionSelect from './OptionSelect'
-import { mocUpsButton, mockUpsFont } from '../../../helpers/mockUps'
+import { mocUpsButton, mockUpsFont, mocUpMedia } from '../../../helpers/mockUps'
 import { formDataValue, postData } from '../../../helpers/formdata'
 import SuccessfullyRegistered from '../../../Components/SuccessfullyRegistered'
 const StyledFormComponent = styled.div`
@@ -15,6 +15,7 @@ const StyledFormComponent = styled.div`
   margin: auto;
 
   form {
+    width: 100%;
     text-align: center;
     margin-bottom: 50px;
     .block {
@@ -42,14 +43,26 @@ const StyledFormComponent = styled.div`
     p {
       float: left;
       ${mockUpsFont.bodyFont}
+      margin-left: 2em;
     }
   }
+
+  .errorMessage {
+    width: 60%;
+    height: 50px;
+    background: var(--c-primary);
+    p {
+      ${mockUpsFont.bodyFont}
+    }
+  }
+
+  ${mocUpMedia.media360}
 `
 
 const FormComponent = (props) => {
   const [message, setMessage] = useState({
-    success: false,
-    message: 'hi',
+    success: null,
+    message: '',
   })
   const [open, setOpen] = useState(false)
 
@@ -62,6 +75,11 @@ const FormComponent = (props) => {
 
   return (
     <StyledFormComponent>
+      {message.success == false && open && (
+        <div className="errorMessage">
+          <p>{message.message}</p>
+        </div>
+      )}
       {message.success ? (
         <SuccessfullyRegistered />
       ) : (
@@ -107,7 +125,10 @@ const FormComponent = (props) => {
                     <p>+38(XXX)XXX-XX-XX</p>
                   </div>
                 </div>
-                <OptionSelect />
+                <div>
+                  <OptionSelect />
+                </div>
+
                 <FileUploadInput setFieldValue={setFieldValue} />
                 <div>
                   <button

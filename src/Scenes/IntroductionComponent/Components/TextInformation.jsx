@@ -4,6 +4,7 @@ import {
   mocUpsBlock,
   mockUpsFont,
   mocUpsButton,
+  mocUpMedia,
 } from '../../../helpers/mockUps'
 import { Link } from 'react-scroll'
 const StyledTextInformation = styled.div`
@@ -24,6 +25,8 @@ const StyledTextInformation = styled.div`
   div button {
     ${mocUpsButton.button}
   }
+
+  ${mocUpMedia.media360}
 `
 
 const TeaxtInfromation = () => {

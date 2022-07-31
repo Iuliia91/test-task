@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { mockUpsFont } from '../helpers/mockUps'
+import { mockUpsFont, mocUpMedia } from '../helpers/mockUps'
+
 const StyledTooltipCpmponent = styled.div`
   .Tooltip-Wrapper {
+    width: 100%;
     display: inline-block;
     position: relative;
   }
@@ -20,6 +22,7 @@ const StyledTooltipCpmponent = styled.div`
       ${mockUpsFont.bodyFont}
     }
   }
+  ${mocUpMedia.media360}
 `
 
 const TooltipComponent = (props) => {

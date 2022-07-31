@@ -25,6 +25,7 @@ const StyledHeader = styled.div`
     ${mocUpsButton.button}
   }
   ${mocUpMedia.media1024}
+  ${mocUpMedia.media360}
 `
 
 const Header = () => {

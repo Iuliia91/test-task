@@ -6,7 +6,7 @@ import { RadioInput } from '../../../Components/InputComponent'
 import { mockUpsFont } from '../../../helpers/mockUps'
 
 const StyledOptionSelect = styled.div`
-  width: 366px;
+  max-width: 366px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,7 @@ const StyledOptionSelect = styled.div`
   .header {
     ${mockUpsFont.bodyFont}
     padding-bottom:11px;
+    margin-left: 2em;
   }
   .selection_block {
     width: 366px;

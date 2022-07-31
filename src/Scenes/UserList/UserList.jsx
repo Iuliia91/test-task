@@ -43,6 +43,7 @@ const StyledUserList = styled.div`
   }
   ${mocUpMedia.media1024}
   ${mocUpMedia.media768}
+  ${mocUpMedia.media360}
 `
 
 const UserList = (props) => {
